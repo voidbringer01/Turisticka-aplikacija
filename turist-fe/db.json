@@ -1,0 +1,57 @@
+{
+    "znamenitosti":[
+        {
+            "id":"1",
+            "idOpstine":"3",
+            "naziv":"Neki objekat",
+            "opis":"Ovo je opis ovog objekta",
+            "slike":["neka slika1","neka slika2"],
+            "koordinate":{
+                "lat":"-34",
+                "lon":"-34"
+            },
+            "vaznost":"znamenito"
+        }
+    ],
+    "ocene":[
+        {
+            "idZnamenitosti":"1",
+            "idKorisnika":"-1",
+            "ocena":"5"
+        },
+        {
+            "idZnamenitosti":"1",
+            "idKorisnika":"-1",
+            "ocena":"3"
+        }
+    ],
+    "opstine":[
+        {
+            "id":"1",
+            "idDrzave":"1",
+            "nazivOpstine":"Novi Pazar"
+        },
+        {
+            "id":"2",
+            "idDrzave":"1",
+            "nazivOpstine":"Sjenica"
+        }
+    ],
+    "drzave":[
+        {
+            "id":"1",
+            "nazivDrzave":"Srbija"
+        },
+        {
+            "id":"2",
+            "nazivDrzave":"Bosna i Hercegovina"
+        }
+    ],
+    "korisnici":[
+        {
+            "userName":"admin",
+            "password":"admin"
+        }
+    ]
+
+}
