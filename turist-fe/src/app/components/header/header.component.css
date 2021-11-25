@@ -1,0 +1,13 @@
+.bg-gradient{
+    background: linear-gradient(
+        45deg,
+        rgba(88, 117, 117, 0.7),
+        rgba(14, 91, 110, 0.7) 100%
+      );  
+}
+
+.bottom-edge-shadow {
+    -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+       -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+}

@@ -11,6 +11,90 @@
                 "lon":"-34"
             },
             "vaznost":"znamenito"
+        },
+        {
+            "id":"1",
+            "idOpstine":"3",
+            "naziv":"Neki objekat",
+            "opis":"Ovo je opis ovog objekta",
+            "slike":["neka slika1","neka slika2"],
+            "koordinate":{
+                "lat":"-34",
+                "lon":"-34"
+            },
+            "vaznost":"znamenito"
+        },
+        {
+            "id":"1",
+            "idOpstine":"3",
+            "naziv":"Neki objekat",
+            "opis":"Ovo je opis ovog objekta",
+            "slike":["neka slika1","neka slika2"],
+            "koordinate":{
+                "lat":"-34",
+                "lon":"-34"
+            },
+            "vaznost":"znamenito"
+        },
+        {
+            "id":"1",
+            "idOpstine":"3",
+            "naziv":"Neki objekat",
+            "opis":"Ovo je opis ovog objekta",
+            "slike":["neka slika1","neka slika2"],
+            "koordinate":{
+                "lat":"-34",
+                "lon":"-34"
+            },
+            "vaznost":"znamenito"
+        },
+        {
+            "id":"1",
+            "idOpstine":"3",
+            "naziv":"Neki objekat",
+            "opis":"Ovo je opis ovog objekta",
+            "slike":["neka slika1","neka slika2"],
+            "koordinate":{
+                "lat":"-34",
+                "lon":"-34"
+            },
+            "vaznost":"znamenito"
+        },
+        {
+            "id":"1",
+            "idOpstine":"3",
+            "naziv":"Neki objekat",
+            "opis":"Ovo je opis ovog objekta",
+            "slike":["neka slika1","neka slika2"],
+            "koordinate":{
+                "lat":"-34",
+                "lon":"-34"
+            },
+            "vaznost":"znamenito"
+        },
+        {
+            "id":"1",
+            "idOpstine":"3",
+            "naziv":"Neki objekat",
+            "opis":"Ovo je opis ovog objekta",
+            "slike":["neka slika1","neka slika2"],
+            "koordinate":{
+                "lat":"-34",
+                "lon":"-34"
+            },
+            "vaznost":"znamenito"
+        },
+        {
+            "id":"1",
+            "idOpstine":"3",
+            "naziv":"Neki objekat",
+            "opis":"Ovo je opis ovog objekta",
+            "slike":["neka slika1","neka slika2"],
+            "koordinate":{
+                "lat":"-34",
+                "lon":"-34"
+            },
+            "vaznost":"znamenito"
         }
     ],
     "ocene":[
@@ -35,6 +119,11 @@
             "id":"2",
             "idDrzave":"1",
             "nazivOpstine":"Sjenica"
+        },
+        {
+            "id":"3",
+            "idDrzave":"2",
+            "nazivOpstine":"Sarajevo"
         }
     ],
     "drzave":[
@@ -46,6 +135,7 @@
             "id":"2",
             "nazivDrzave":"Bosna i Hercegovina"
         }
+        
     ],
     "korisnici":[
         {

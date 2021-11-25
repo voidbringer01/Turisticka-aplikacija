@@ -1,0 +1,39 @@
+<div class="bg-image shadow-1-strong  mt-4 ">
+    <div class="mask py-5 bg-gradient">
+        <div class="container d-flex align-items-center justify-content-center text-center h-100">
+        <div class="text-white">
+            <h1 class="mb-3">Dobrodosli u Turisticki Vodic</h1>
+            <h5 class="mb-4">Pretrazite znamenitosti</h5>
+            <form>
+            <div class="form-group">
+                <label for="drzava" class="form-label mt-4">Izaberite drzavu - </label>
+                <select class="form-control" id="drzava" (change)="drzavaChange($event)" name="drzava">
+                    <option disabled selected value> -- Drzave -- </option>
+                    <option *ngFor="let drzava of drzave" [value]="drzava.id">{{drzava.nazivDrzave}}</option>
+                </select>
+                </div>
+                <div class="form-group"   *ngIf="drzavaIsSelected"  >
+                    <label for="opstina" class="form-label mt-4">Izaberite opstinu - </label>
+                    <select class="form-control" id="opstina" name="opstina" (change)="opstinaChange()" [(ngModel)]="selektovaniIdOpstine">
+                        <option disabled [selected]="!opstinaIsSelected" value="-1">-- Opstine --</option>
+                        <option *ngFor="let opstina of opstine" [value]="opstina.id">{{opstina.nazivOpstine}}</option>
+                    </select>
+                </div>
+            </form>
+            <button class="btn btn-outline-light btn-lg m-2" *ngIf="opstinaIsSelected" (click)="getZnamenitosti()">
+                Go
+            </button>
+        
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-4 " *ngFor="let znamenitost of znamenitosti">
+            <app-znamenitost [znamenitost]="znamenitost"></app-znamenitost>
+        </div>
+    </div>
+</div>
+<div class="container">
+    TODO:Najpopularnije znamenitosti.....
+</div>
