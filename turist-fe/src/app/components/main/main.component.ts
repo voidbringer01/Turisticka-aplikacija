@@ -16,7 +16,19 @@ export class MainComponent implements OnInit {
   drzavaIsSelected: boolean = false;
   opstinaIsSelected: boolean = false;
   selektovaniIdOpstine: string ="-1";
-
+  prikazaneZnamenitosti: boolean = false
+  filterargs:Object[] = [
+    {
+    vaznost:"znamenito"
+    },
+    {
+    vaznost:"veoma znamenito"
+    },
+    {
+    vaznost:"nezaobilazno"
+    }
+  ] 
+  // todo: Prikaz vaznosti kategorija treba prepraviti
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
@@ -39,5 +51,31 @@ export class MainComponent implements OnInit {
   getZnamenitosti(){
     this.apiService.getZnamenitosti().subscribe(
       (znamenitosti)=>this.znamenitosti = znamenitosti.filter((znamenitost)=>znamenitost.idOpstine===this.selektovaniIdOpstine))
+    this.prikazaneZnamenitosti = true
+  }
+
+  // cb1 - znamenito, cb2 - veoma znamenito, cb3 - nezaobilazno, search - query string 
+  searchZnamenitosti(searchObj:{cb1:boolean,cb2:boolean,cb3:boolean,search:string}){
+    let filterArr = [];
+    if(searchObj?.cb1 == true)
+      filterArr.push("znamenito")
+      
+    if(searchObj?.cb2 == true)
+      filterArr.push("veoma znamenito")
+    
+    if(searchObj?.cb3 == true)
+      filterArr.push("nezaobilazno")
+
+    // todo: Handle search on backend 
+    this.apiService.getZnamenitosti().subscribe(
+      (znamenitosti) => {
+        this.znamenitosti =  znamenitosti.filter(
+                              (znamenitost)=>filterArr.indexOf(znamenitost.vaznost)!=-1 && znamenitost.naziv.includes(searchObj.search) )
+        if(this.znamenitosti.length > 0)
+          this.prikazaneZnamenitosti = true
+        else
+          this.prikazaneZnamenitosti = false
+      })
+    console.log(searchObj)
   }
 }

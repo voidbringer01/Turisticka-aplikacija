@@ -1,0 +1,26 @@
+<div class="container mb-4 mt-4 ">
+    <form class="form-inline ms-auto  ">
+        <div class="input-group  m-auto">
+            <div class="form-check mr-1">
+                <input class="form-check-input" type="checkbox" value="znamenito" id="check1" [checked]="cb1" (change)="cb1=!cb1">
+                <label class="form-check-label" for="check1">
+                    Znamenito
+                </label>
+            </div>
+            <div class="form-check mr-1">
+                <input class="form-check-input" type="checkbox" value="veoma znamenito" id="check2" [checked]="cb2" (change)="cb2=!cb2">
+                <label class="form-check-label" for="check2">
+                    Veoma znamenito
+                </label>
+            </div>
+            <div class="form-check mr-1">
+                <input class="form-check-input" type="checkbox" value="nezaobilazno" id="check3" [checked]="cb3" (change)="cb3=!cb3">
+                <label class="form-check-label" for="check3">
+                    Nezaobilazno
+                </label>
+            </div>
+            <input class="form-control" type="text" placeholder="Pretrazi znamenitosti..." name="search" [(ngModel)]="search"/>
+            <button class="btn btn-dark" type="button" (click)="handleSearch()"><fa-icon [icon]="faSearch"></fa-icon></button>
+        </div>
+    </form>
+</div>

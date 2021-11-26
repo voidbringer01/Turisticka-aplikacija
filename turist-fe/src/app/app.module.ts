@@ -13,7 +13,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ZnamenitostComponent } from './components/znamenitost/znamenitost.component';
-
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { VaznostfilterPipe } from './pipes/vaznostfilter.pipe';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+    // FontAwesomeModule
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,14 +27,17 @@ import { ZnamenitostComponent } from './components/znamenitost/znamenitost.compo
     AdminComponent,
     HeaderComponent,
     FooterComponent,
-    ZnamenitostComponent
+    ZnamenitostComponent,
+    SearchbarComponent,
+    VaznostfilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

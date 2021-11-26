@@ -1,3 +1,4 @@
+
 <div class="bg-image shadow-1-strong  mt-4 ">
     <div class="mask py-5 bg-gradient">
         <div class="container d-flex align-items-center justify-content-center text-center h-100">
@@ -23,13 +24,16 @@
             <button class="btn btn-outline-light btn-lg m-2" *ngIf="opstinaIsSelected" (click)="getZnamenitosti()">
                 Go
             </button>
-        
+            
+            <h5 class="mb-4 mt-5">Ako imate neku znamenitost u vidu</h5>
+            <app-searchbar (searchEvent)="searchZnamenitosti($event)"></app-searchbar>
         </div>
     </div>
 </div>
-<div class="container mt-3">
-    <div class="row">
-        <div class="col-4 " *ngFor="let znamenitost of znamenitosti">
+<div  class="container mt-3" *ngIf="prikazaneZnamenitosti">
+    <div  class="row" *ngFor="let filt of filterargs">
+        <div class="col-12" ><h2>{{filt.vaznost}}</h2></div>
+        <div class="col-4 " *ngFor="let znamenitost of znamenitosti | vaznostfilter:filt">
             <app-znamenitost [znamenitost]="znamenitost"></app-znamenitost>
         </div>
     </div>
