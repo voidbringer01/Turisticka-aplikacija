@@ -16,6 +16,8 @@ import { ZnamenitostComponent } from './components/znamenitost/znamenitost.compo
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { VaznostfilterPipe } from './pipes/vaznostfilter.pipe';
+import { ZnamenitostpreviewComponent } from './components/znamenitostpreview/znamenitostpreview.component';
+import { StarsVoteComponent } from './components/stars-vote/stars-vote.component';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     // FontAwesomeModule
 @NgModule({
@@ -29,7 +31,9 @@ import { VaznostfilterPipe } from './pipes/vaznostfilter.pipe';
     FooterComponent,
     ZnamenitostComponent,
     SearchbarComponent,
-    VaznostfilterPipe
+    VaznostfilterPipe,
+    ZnamenitostpreviewComponent,
+    StarsVoteComponent
   ],
   imports: [
     BrowserModule,

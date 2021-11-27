@@ -20,6 +20,7 @@ export class SearchbarComponent implements OnInit {
   }
 
  handleSearch(){
+   
   this.searchEvent.emit({cb1:this.cb1,cb2:this.cb2,cb3:this.cb3,search:this.search})
  }
 

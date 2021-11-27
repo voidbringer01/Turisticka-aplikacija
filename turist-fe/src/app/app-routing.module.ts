@@ -4,27 +4,42 @@ import { AdminComponent } from './components/admin/admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ZnamenitostpreviewComponent } from './components/znamenitostpreview/znamenitostpreview.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
     path:'', 
-    component:MainComponent
+    component:MainComponent,
+    pathMatch: 'full'
   },
   {
     path:'login',
-    component:LoginComponent
+    component:LoginComponent,
+    pathMatch: 'full'
   },
   {
     path:'register',
-    component:RegisterComponent
+    component:RegisterComponent,
+    pathMatch: 'full'
   },
   {
     path:'admin',
-    component:AdminComponent
+    component:AdminComponent,
+    pathMatch: 'full',
+    canActivate:[AuthGuard]
   },
   {
-    path:'**',
-    component:MainComponent
+    path:'znamenitost/:id',
+    component:ZnamenitostpreviewComponent
+  },
+  {
+    path:'404',
+    component:MainComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '/404'
   }
 ];
 

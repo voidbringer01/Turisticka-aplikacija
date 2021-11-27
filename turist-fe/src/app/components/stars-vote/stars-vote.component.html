@@ -1,0 +1,1 @@
+<fa-icon *ngFor="let num of [0,1,2,3,4]" [ngStyle]="{'color':hoverNum>0?(hoverNum>=num?'#ffdf00':color):current>=num?'#c69f26':color}" [icon]="faStar" (click)="mouseClick(num)" (mouseenter)="mouseEnter(num)" (mouseleave)="mouseLeave()"></fa-icon>

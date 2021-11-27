@@ -1,14 +1,16 @@
 <!-- Todos: Prosecna ocena, oceni objekat, slike. -->
 <div class="card mb-3">
-    <h3 class="card-header">{{znamenitost.naziv}}</h3>
+    <h3 class="card-header"><a [routerLink]="['/znamenitost/',znamenitost.id]" class="text-dark" routerLinkActive="active">{{znamenitost.naziv}}</a></h3>
     <div class="card-body">
-      <h5 class="card-title">Prosecna ocena: 5</h5>
+      <h5 class="card-title">Prosecna ocena: {{prosecnaOcena || 'Nije ocenjeno'}}</h5>
       <h6 class="card-subtitle text-muted">{{znamenitost.vaznost}}</h6>
     </div>
+    <img class="img-thumbnail" [src]="znamenitost.slike[1]">
     <div class="card-body">
       <p class="card-text">{{znamenitost.opis}}.</p>
     </div>
     <div class="card-footer text-muted">
       {{znamenitost.koordinate.lat}}/{{znamenitost.koordinate.lon}}
+      <div class="float-right"><app-stars-vote [current]="mojaOcena?.ocena-1" (vote)="handleVoting($event)"></app-stars-vote></div>
     </div>
   </div>

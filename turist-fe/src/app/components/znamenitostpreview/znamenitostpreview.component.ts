@@ -1,30 +1,43 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Znamenitost } from 'src/app/models/znamenitost';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Ocena } from 'src/app/models/ocena';
+import { Znamenitost } from 'src/app/models/znamenitost';
 import { ApiService } from 'src/app/services/api.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { average } from 'src/app/utils/average';
 
 @Component({
-  selector: 'app-znamenitost',
-  templateUrl: './znamenitost.component.html',
-  styleUrls: ['./znamenitost.component.css']
+  selector: 'app-znamenitostpreview',
+  templateUrl: './znamenitostpreview.component.html',
+  styleUrls: ['./znamenitostpreview.component.css']
 })
-export class ZnamenitostComponent implements OnInit {
-  @Input() znamenitost:Znamenitost;
+export class ZnamenitostpreviewComponent implements OnInit {
+  znamenitost:Znamenitost;
+  id:string;
   ocene:Ocena[];
   prosecnaOcena:number;
   mojaOcena:Ocena;
   uuid:string;
 
-  constructor( private apiService:ApiService, private storageService:StorageService) { }
+  constructor(private route: ActivatedRoute, private apiService:ApiService,  private storageService:StorageService) { }
 
   ngOnInit(): void {
-    this.uuid = this.storageService.getUserID() 
-    this.apiService.getOcenaZnamenitostiByCurrentUser(this.uuid).subscribe((ocene)=>{
-      this.mojaOcena = ocene.find((ocena)=>ocena.idZnamenitosti==this.znamenitost.id && ocena.idKorisnika==this.uuid)
+    this.route.params.subscribe(params => {
+
+      this.id = params['id']
+      this.apiService.getZnamenitostById(this.id).subscribe((znamenitost)=>{
+        this.znamenitost = znamenitost
+        
+        this.uuid = this.storageService.getUserID() 
+        this.apiService.getOcenaZnamenitostiByCurrentUser(this.uuid).subscribe((ocene)=>{
+          this.mojaOcena = ocene.find((ocena)=>ocena.idZnamenitosti==this.znamenitost?.id && ocena.idKorisnika==this.uuid)
+        })
+        this.handleAverage()
+      })
+      
     })
-    this.handleAverage()
+
+    
   }
 
   handleAverage(){

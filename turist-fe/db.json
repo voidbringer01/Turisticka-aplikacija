@@ -1,147 +1,208 @@
 {
-    "znamenitosti":[
-        {
-            "id":"1",
-            "idOpstine":"3",
-            "naziv":"Neki objekat",
-            "opis":"Ovo je opis ovog objekta",
-            "slike":["neka slika1","neka slika2"],
-            "koordinate":{
-                "lat":"-34",
-                "lon":"-34"
-            },
-            "vaznost":"znamenito"
-        },
-        {
-            "id":"1",
-            "idOpstine":"3",
-            "naziv":"Neki objekat",
-            "opis":"Ovo je opis ovog objekta",
-            "slike":["neka slika1","neka slika2"],
-            "koordinate":{
-                "lat":"-34",
-                "lon":"-34"
-            },
-            "vaznost":"znamenito"
-        },
-        {
-            "id":"1",
-            "idOpstine":"3",
-            "naziv":"Neki objekat",
-            "opis":"Ovo je opis ovog objekta",
-            "slike":["neka slika1","neka slika2"],
-            "koordinate":{
-                "lat":"-34",
-                "lon":"-34"
-            },
-            "vaznost":"znamenito"
-        },
-        {
-            "id":"1",
-            "idOpstine":"3",
-            "naziv":"Neki objekat",
-            "opis":"Ovo je opis ovog objekta",
-            "slike":["neka slika1","neka slika2"],
-            "koordinate":{
-                "lat":"-34",
-                "lon":"-34"
-            },
-            "vaznost":"znamenito"
-        },
-        {
-            "id":"1",
-            "idOpstine":"3",
-            "naziv":"Neki objekat",
-            "opis":"Ovo je opis ovog objekta",
-            "slike":["neka slika1","neka slika2"],
-            "koordinate":{
-                "lat":"-34",
-                "lon":"-34"
-            },
-            "vaznost":"znamenito"
-        },
-        {
-            "id":"1",
-            "idOpstine":"3",
-            "naziv":"Neki objekat",
-            "opis":"Ovo je opis ovog objekta",
-            "slike":["neka slika1","neka slika2"],
-            "koordinate":{
-                "lat":"-34",
-                "lon":"-34"
-            },
-            "vaznost":"znamenito"
-        },
-        {
-            "id":"1",
-            "idOpstine":"3",
-            "naziv":"Neki objekat",
-            "opis":"Ovo je opis ovog objekta",
-            "slike":["neka slika1","neka slika2"],
-            "koordinate":{
-                "lat":"-34",
-                "lon":"-34"
-            },
-            "vaznost":"znamenito"
-        },
-        {
-            "id":"1",
-            "idOpstine":"3",
-            "naziv":"Neki objekat",
-            "opis":"Ovo je opis ovog objekta",
-            "slike":["neka slika1","neka slika2"],
-            "koordinate":{
-                "lat":"-34",
-                "lon":"-34"
-            },
-            "vaznost":"znamenito"
-        }
-    ],
-    "ocene":[
-        {
-            "idZnamenitosti":"1",
-            "idKorisnika":"-1",
-            "ocena":"5"
-        },
-        {
-            "idZnamenitosti":"1",
-            "idKorisnika":"-1",
-            "ocena":"3"
-        }
-    ],
-    "opstine":[
-        {
-            "id":"1",
-            "idDrzave":"1",
-            "nazivOpstine":"Novi Pazar"
-        },
-        {
-            "id":"2",
-            "idDrzave":"1",
-            "nazivOpstine":"Sjenica"
-        },
-        {
-            "id":"3",
-            "idDrzave":"2",
-            "nazivOpstine":"Sarajevo"
-        }
-    ],
-    "drzave":[
-        {
-            "id":"1",
-            "nazivDrzave":"Srbija"
-        },
-        {
-            "id":"2",
-            "nazivDrzave":"Bosna i Hercegovina"
-        }
-        
-    ],
-    "korisnici":[
-        {
-            "userName":"admin",
-            "password":"admin"
-        }
-    ]
-
+  "znamenitosti": [
+    {
+      "id": "1",
+      "idOpstine": "3",
+      "naziv": "Neki objekat",
+      "opis": "Ovo je opis ovog objekta",
+      "slike": [
+        "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640",
+        "https://evansmedia.net/wp-content/uploads/2020/09/placeholder-1.png"
+      ],
+      "koordinate": {
+        "lat": "-34",
+        "lon": "-34"
+      },
+      "vaznost": "znamenito"
+    },
+    {
+      "id": "2",
+      "idOpstine": "3",
+      "naziv": "Neki objekat",
+      "opis": "Ovo je opis ovog objekta",
+      "slike": [
+        "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640",
+        "https://evansmedia.net/wp-content/uploads/2020/09/placeholder-1.png"
+      ],
+      "koordinate": {
+        "lat": "-34",
+        "lon": "-34"
+      },
+      "vaznost": "znamenito"
+    },
+    {
+      "id": "3",
+      "idOpstine": "3",
+      "naziv": "Neki objekat",
+      "opis": "Ovo je opis ovog objekta",
+      "slike": [
+        "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640",
+        "https://evansmedia.net/wp-content/uploads/2020/09/placeholder-1.png"
+      ],
+      "koordinate": {
+        "lat": "-34",
+        "lon": "-34"
+      },
+      "vaznost": "znamenito"
+    },
+    {
+      "id": "4",
+      "idOpstine": "3",
+      "naziv": "Neki objekat",
+      "opis": "Ovo je opis ovog objekta",
+      "slike": [
+        "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640",
+        "https://evansmedia.net/wp-content/uploads/2020/09/placeholder-1.png"
+      ],
+      "koordinate": {
+        "lat": "-34",
+        "lon": "-34"
+      },
+      "vaznost": "znamenito"
+    },
+    {
+      "id": "5",
+      "idOpstine": "3",
+      "naziv": "Neki objekat",
+      "opis": "Ovo je opis ovog objekta",
+      "slike": [
+        "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640",
+        "https://evansmedia.net/wp-content/uploads/2020/09/placeholder-1.png"
+      ],
+      "koordinate": {
+        "lat": "-34",
+        "lon": "-34"
+      },
+      "vaznost": "znamenito"
+    },
+    {
+      "id": "6",
+      "idOpstine": "3",
+      "naziv": "Neki objekat",
+      "opis": "Ovo je opis ovog objekta",
+      "slike": [
+        "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640",
+        "https://evansmedia.net/wp-content/uploads/2020/09/placeholder-1.png"
+      ],
+      "koordinate": {
+        "lat": "-34",
+        "lon": "-34"
+      },
+      "vaznost": "znamenito"
+    },
+    {
+      "id": "7",
+      "idOpstine": "3",
+      "naziv": "Neki objekat",
+      "opis": "Ovo je opis ovog objekta",
+      "slike": [
+        "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640",
+        "https://evansmedia.net/wp-content/uploads/2020/09/placeholder-1.png"
+      ],
+      "koordinate": {
+        "lat": "-34",
+        "lon": "-34"
+      },
+      "vaznost": "znamenito"
+    },
+    {
+      "id": "8",
+      "idOpstine": "3",
+      "naziv": "Neki objekat",
+      "opis": "Ovo je opis ovog objekta",
+      "slike": [
+        "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png?w=640",
+        "https://evansmedia.net/wp-content/uploads/2020/09/placeholder-1.png"
+      ],
+      "koordinate": {
+        "lat": "-34",
+        "lon": "-34"
+      },
+      "vaznost": "znamenito"
+    }
+  ],
+  "ocene": [
+    {
+      "id": "1",
+      "idZnamenitosti": "1",
+      "idKorisnika": "00bc91c9-425c-4caa-975b-89914d7168aa",
+      "ocena": 4
+    },
+    {
+      "id": "2",
+      "idZnamenitosti": "2",
+      "idKorisnika": "00bc91c9-425c-4caa-975b-89914d7168aa",
+      "ocena": 3
+    },
+    {
+      "idZnamenitosti": "3",
+      "idKorisnika": "00bc91c9-425c-4caa-975b-89914d7168aa",
+      "ocena": 3,
+      "id": "ScMGsRg"
+    },
+    {
+      "idZnamenitosti": "5",
+      "idKorisnika": "00bc91c9-425c-4caa-975b-89914d7168aa",
+      "ocena": 5,
+      "id": "zhJywrw"
+    },
+    {
+      "idZnamenitosti": "6",
+      "idKorisnika": "00bc91c9-425c-4caa-975b-89914d7168aa",
+      "ocena": 2,
+      "id": "hr3R6p-"
+    },
+    {
+      "idZnamenitosti": "4",
+      "idKorisnika": "00bc91c9-425c-4caa-975b-89914d7168aa",
+      "ocena": 4,
+      "id": "k-ub9F3"
+    },
+    {
+      "idZnamenitosti": "8",
+      "idKorisnika": "00bc91c9-425c-4caa-975b-89914d7168aa",
+      "ocena": 4,
+      "id": "T1LiWqI"
+    },
+    {
+      "idZnamenitosti": "7",
+      "idKorisnika": "00bc91c9-425c-4caa-975b-89914d7168aa",
+      "ocena": 4,
+      "id": "znhn-wK"
+    }
+  ],
+  "opstine": [
+    {
+      "id": "1",
+      "idDrzave": "1",
+      "nazivOpstine": "Novi Pazar"
+    },
+    {
+      "id": "2",
+      "idDrzave": "1",
+      "nazivOpstine": "Sjenica"
+    },
+    {
+      "id": "3",
+      "idDrzave": "2",
+      "nazivOpstine": "Sarajevo"
+    }
+  ],
+  "drzave": [
+    {
+      "id": "1",
+      "nazivDrzave": "Srbija"
+    },
+    {
+      "id": "2",
+      "nazivDrzave": "Bosna i Hercegovina"
+    }
+  ],
+  "korisnici": [
+    {
+      "id": "1",
+      "userName": "admin@admin.com",
+      "password": "admin"
+    }
+  ]
 }
