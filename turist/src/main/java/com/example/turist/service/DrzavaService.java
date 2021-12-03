@@ -1,12 +1,10 @@
 package com.example.turist.service;
 
-import com.example.turist.dto.DrzavaResponse;
 import com.example.turist.entity.Drzava;
 import com.example.turist.repository.DrzavaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

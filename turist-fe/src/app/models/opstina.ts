@@ -1,5 +1,8 @@
+import { Znamenitost } from "./znamenitost";
+
 export interface Opstina{
-    id:string;
-    idDrzave:string;
+    id:number;
+    idDrzave?:string;
     nazivOpstine:string;
+    znamenitosti:Znamenitost[];
 }

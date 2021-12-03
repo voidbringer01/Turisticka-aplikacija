@@ -9,11 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email:string;
+  username:string;
   password:string;
 
-  emailIsValid:boolean;
-  emailIsInvalid:boolean;
+  usernameIsValid:boolean;
+  usernameIsInvalid:boolean;
   passwordIsValid:boolean;
   passwordIsInvalid:boolean;
 
@@ -24,10 +24,11 @@ export class LoginComponent implements OnInit {
 
   login(){
     let user:UserFormData = {
-      email:this.email,
+      username:this.username,
       password:this.password
     }
     this.authService.loginUser(user).subscribe(auth =>{
+      console.log(auth)
       this.router.navigate(['/admin'])
     })
   }

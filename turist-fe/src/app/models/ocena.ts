@@ -1,6 +1,6 @@
 export interface Ocena{
-    id?:string;
-    idZnamenitosti:string;
-    idKorisnika:string;
+    id?:number;
+    idZnamenitosti?:number;
+    potpis:string;
     ocena:number;
 }

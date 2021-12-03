@@ -1,0 +1,35 @@
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Slike</th>
+                <th scope="col">Naziv</th>
+                <th scope="col">Opis</th>
+                <th scope="col">Vaznost</th>
+                <th scope="col">Koordinate</th>
+                <th scope="col">Prosecna ocena</th>
+                <th scope="col">AKtivnost</th>
+                <th scope="col">Deaktiviraj</th>
+                <th scope="col">Edituj</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let znamenitost of znamenitosti; let i = index;">
+                <th scope="row">{{i+1}}</th>
+                <td><app-inline-image-scroller [slike]="znamenitost.slike" type="img-thumbnail" mw="max-width: 150px;"></app-inline-image-scroller></td>
+                <td>{{znamenitost.naziv}}</td>
+                <td>{{znamenitost.opis}}</td>
+                <td>{{znamenitost.vaznost}}</td>
+                <td>{{znamenitost.koordinate.lat}}/{{znamenitost.koordinate.lon}}</td>
+                <td  style="position: relative;" (mouseenter)="mouseIn(i)" (mouseleave)="mouseOut(i)">{{formatOcene(znamenitost.ocene) || 'Nema ocena'}}<span class="tool-tip" [style]="{'display':showToolTip[i]}">{{prikaziOcene(znamenitost.ocene)}}</span></td>
+                <td [class]="znamenitost.aktivna?'text-success':'text-muted'">{{znamenitost.aktivna?'Aktivna':'Neaktivna'}}</td>
+                <td><button class="btn btn-link" [class]="znamenitost.aktivna?'text-danger':'text-success'" (click)="deaktiviraj(i)">{{znamenitost.aktivna?'deaktiviraj':'aktiviraj'}}</button></td>
+                <!-- <td><button class="btn text-info btn-link" (click)="edituj(i)">edituj</button></td> -->
+                <td>
+                    <app-edit-modal [title]="'Edit znamenitost'" [text]="'edituj'" [znamenitost]="znamenitost" (save)="edituj()" [i]="i"></app-edit-modal>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

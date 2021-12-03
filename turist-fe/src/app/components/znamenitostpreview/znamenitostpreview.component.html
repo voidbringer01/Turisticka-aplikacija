@@ -6,8 +6,8 @@
             <h5 class="card-title">Prosecna ocena: {{prosecnaOcena || 'Nije ocenjeno'}}</h5>
         <h6 class="card-subtitle text-muted">{{znamenitost?.vaznost}}</h6>
         </div>
-        <!-- Todo: Lista slika... -->
-        <img class="img-thumbnail" [src]="znamenitost?.slike[1]">
+        <!-- <img class="img-thumbnail" [src]="apiConfig.baseUrl+znamenitost?.slike[1]"> -->
+        <app-inline-image-scroller [slike]="znamenitost.slike" [type]="'img-fluid'" [mw]="'max-width: 450px;'"></app-inline-image-scroller>
         <div class="card-body">
         <p class="card-text">{{znamenitost?.opis}}.</p>
         </div>

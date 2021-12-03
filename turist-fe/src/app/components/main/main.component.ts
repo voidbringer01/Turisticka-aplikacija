@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Drzava } from 'src/app/models/drzava';
 import { Opstina } from 'src/app/models/opstina';
+import { Vaznost } from 'src/app/models/vaznost';
 import { Znamenitost } from 'src/app/models/znamenitost';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -19,13 +20,13 @@ export class MainComponent implements OnInit {
   prikazaneZnamenitosti: boolean = false
   filterargs:Object[] = [
     {
-    vaznost:"znamenito"
+    vaznost:Vaznost.ZNAMENITO
     },
     {
-    vaznost:"veoma znamenito"
+    vaznost:Vaznost.VEOMA_ZNAMENITO
     },
     {
-    vaznost:"nezaobilazno"
+    vaznost:Vaznost.NEZAOBILAZNO
     }
   ] 
   // todo: Prikaz vaznosti kategorija treba prepraviti
@@ -42,40 +43,39 @@ export class MainComponent implements OnInit {
       this.opstinaIsSelected = false
       this.selektovaniIdOpstine = "-1"
     }
-      this.apiService.getOpstine().subscribe((opstine)=>this.opstine = opstine.filter((opstina)=>opstina.idDrzave===evt.target.value))
+      this.opstine = this.drzave.find((drzava)=>drzava.id == evt.target.value).opstine
     
   }
   opstinaChange(){
     this.opstinaIsSelected = true
   }
   getZnamenitosti(){
-    this.apiService.getZnamenitosti().subscribe(
-      (znamenitosti)=>this.znamenitosti = znamenitosti.filter((znamenitost)=>znamenitost.idOpstine===this.selektovaniIdOpstine))
+    this.znamenitosti = this.opstine.find((opstina)=>opstina.id == parseInt(this.selektovaniIdOpstine)).znamenitosti
+    console.log(this.znamenitosti)
     this.prikazaneZnamenitosti = true
   }
 
   // cb1 - znamenito, cb2 - veoma znamenito, cb3 - nezaobilazno, search - query string 
   searchZnamenitosti(searchObj:{cb1:boolean,cb2:boolean,cb3:boolean,search:string}){
-    let filterArr = [];
+    let filterArr:Vaznost[] = [];
     if(searchObj?.cb1 == true)
-      filterArr.push("znamenito")
+      filterArr.push(Vaznost.ZNAMENITO)
       
     if(searchObj?.cb2 == true)
-      filterArr.push("veoma znamenito")
+      filterArr.push(Vaznost.VEOMA_ZNAMENITO)
     
     if(searchObj?.cb3 == true)
-      filterArr.push("nezaobilazno")
+      filterArr.push(Vaznost.NEZAOBILAZNO)
 
-    // todo: Handle search on backend 
-    this.apiService.getZnamenitosti().subscribe(
+    this.apiService.getZnamenitostiByName(searchObj.search).subscribe(
       (znamenitosti) => {
         this.znamenitosti =  znamenitosti.filter(
-                              (znamenitost)=>filterArr.indexOf(znamenitost.vaznost)!=-1 && znamenitost.naziv.includes(searchObj.search) )
+                              (znamenitost)=>filterArr.indexOf(znamenitost.vaznost)!=-1)
+
         if(this.znamenitosti.length > 0)
           this.prikazaneZnamenitosti = true
         else
           this.prikazaneZnamenitosti = false
       })
-    console.log(searchObj)
   }
 }

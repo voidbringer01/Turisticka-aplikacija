@@ -1,0 +1,8 @@
+<div class="d-flex flex-column justify-content-center align-items-center">
+<img [src]="apiConfig.baseUrl+slike[current]" [class]="type" [style]="mw">
+{{format(slike[current])}}  
+<span></span>
+</div>
+
+<fa-icon [icon]="faArrowRight" class="float-right btn" [class]="rightDisabled?'text-muted':''" (click)="goRight()"></fa-icon>
+<fa-icon [icon]="faArrowLeft" class="float-left btn" [class]="leftDisabled?'text-muted':''"  (click)="goLeft()"></fa-icon>

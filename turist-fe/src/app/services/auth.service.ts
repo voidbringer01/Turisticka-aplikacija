@@ -1,38 +1,73 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User, UserFormData } from '../models/user';
 import {apiConfig} from '../config'
-import {of} from 'rxjs';
+import {BehaviorSubject, of} from 'rxjs';
+import{tap} from 'rxjs/operators'
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  authenticated:boolean = false;
+  private auth = new BehaviorSubject<boolean>(false);
+  authenticated = this.auth.asObservable();
+  loggedUser:string;
+  constructor(private http:HttpClient) { 
+  }
 
-  constructor(private http:HttpClient) { }
+  setAuth(){
+    this.isAuthenticated().subscribe(asd=>{
+      this.auth.next(true)
+    },
+    error=>this.auth.next(false)
+    )
+  }
 
   isAuthenticated(){
-    return this.authenticated;
+    if(!!this.getLoggedUser())
+      return of(false);
+    
+    return this.http.post<any>(`${apiConfig.authUrl}/isauthenticated`,{username:this.getLoggedUser()},httpOptions)
   }
 
   loginUser(user:UserFormData){
-    this.authenticated = true
-    return of(this.authenticated)
+    return this.http.post<any>(`${apiConfig.authUrl}/login`,user,httpOptions).pipe(tap(data=>{
+      this.doLoginUser(user.username,data)
+    }))
+  }
+
+  registerUser(user:UserFormData){
+    console.log(user)
+    return this.http.post<any>(`${apiConfig.authUrl}/register`,user,httpOptions)
   }
 
   logout(){
-    this.authenticated = false
-    return of(this.authenticated)
-  }
-
-  // todo: Srediti kada se sredi backend
-  registerUser(user:User){
-    return 
+     this.clearAuthToken()
+     this.clearLoggedUser()
+     return of(!!this.getAuthToken())
   }
 
   setAuthToken(token:string){
     localStorage.setItem('token',token)
+  }
+
+  setLoggedUser(username:string){
+    localStorage.setItem('user',username)
+  }
+
+  getLoggedUser(){
+    return localStorage.getItem('user')
+  }
+
+  clearLoggedUser(){
+    localStorage.removeItem('user')
+    this.auth.next(false)
+    this.loggedUser = null
   }
 
   getAuthToken(){
@@ -41,5 +76,12 @@ export class AuthService {
 
   clearAuthToken(){
     localStorage.removeItem('token')
+  }
+
+  doLoginUser(username,token){
+    this.auth.next(true)
+    this.loggedUser = username
+    this.setLoggedUser(username)
+    this.setAuthToken(token.token)
   }
 }

@@ -6,6 +6,7 @@ import { MainComponent } from './components/main/main.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ZnamenitostpreviewComponent } from './components/znamenitostpreview/znamenitostpreview.component';
 import { AuthGuard } from './guards/auth.guard';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {
@@ -16,12 +17,14 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate:[LoginGuard]
   },
   {
     path:'register',
     component:RegisterComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate:[LoginGuard]
   },
   {
     path:'admin',

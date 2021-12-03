@@ -10,14 +10,24 @@ import { AdminComponent } from './components/admin/admin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ZnamenitostComponent } from './components/znamenitost/znamenitost.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { VaznostfilterPipe } from './pipes/vaznostfilter.pipe';
 import { ZnamenitostpreviewComponent } from './components/znamenitostpreview/znamenitostpreview.component';
 import { StarsVoteComponent } from './components/stars-vote/stars-vote.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AuthService } from './services/auth.service';
+import { LoginGuard } from './guards/login.guard';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { AddznamenitostComponent } from './components/addznamenitost/addznamenitost.component';
+import { AdminpregledznamenitostiComponent } from './components/adminpregledznamenitosti/adminpregledznamenitosti.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { InlineImageScrollerComponent } from './components/inline-image-scroller/inline-image-scroller.component';
+import { AddEditModalComponent } from './components/add-edit-modal/add-edit-modal.component';
+import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     // FontAwesomeModule
 @NgModule({
@@ -33,7 +43,13 @@ import { StarsVoteComponent } from './components/stars-vote/stars-vote.component
     SearchbarComponent,
     VaznostfilterPipe,
     ZnamenitostpreviewComponent,
-    StarsVoteComponent
+    StarsVoteComponent,
+    AddznamenitostComponent,
+    AdminpregledznamenitostiComponent,
+    PaginationComponent,
+    InlineImageScrollerComponent,
+    AddEditModalComponent,
+    EditModalComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +57,14 @@ import { StarsVoteComponent } from './components/stars-vote/stars-vote.component
     NgbModule,
     HttpClientModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthGuard,AuthService,LoginGuard,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

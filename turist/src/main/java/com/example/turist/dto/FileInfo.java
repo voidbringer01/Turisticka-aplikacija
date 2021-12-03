@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DrzavaResponse {
-    private int id;
-    private String nazivDrzave;
+public class FileInfo {
+    private String name;
+    private String url;
 }

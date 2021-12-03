@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Vaznost } from '../models/vaznost';
 import { Znamenitost } from '../models/znamenitost';
 
 @Pipe({
@@ -6,11 +7,10 @@ import { Znamenitost } from '../models/znamenitost';
 })
 export class VaznostfilterPipe implements PipeTransform {
 
-  transform(items: Znamenitost[], filter: {vaznost:string}): any {
+  transform(items: Znamenitost[], filter: {vaznost:Vaznost}): any {
     if(!items || !filter)
       return items;
-    
-    return items.filter(item=>item.vaznost.indexOf(filter.vaznost)!==-1);
+    return items.filter(item=>item.vaznost==filter.vaznost);
   }
 
 }

@@ -5,7 +5,22 @@
                 <div class="card-header row">
                     <h5 class="card-title">Znamenitosti</h5>
                 </div>
-                Todo: crud znamenitosti..
+                <div class="card-body">
+                    <app-add-edit-modal [title]="'Add znamenitost'" [text]="'Dodaj znamenitost'" (save)="dodaj()"></app-add-edit-modal>
+                </div>
+                <div *ngIf="dodato" class="alert alert-success" role="alert">
+                    Uspesno dodato!
+                </div>
+                <div *ngIf="editovano" class="alert alert-success" role="alert">
+                    Uspesno editovano!
+                </div>
+                <div class="card-body  d-block w-100">
+                    <app-adminpregledznamenitosti [num]="num" (onEdit)="edituj()"></app-adminpregledznamenitosti>
+                </div>
+                <div class="card-footer row">
+                    <app-pagination (pageEvent)="paginationHandle($event)"></app-pagination>
+                </div>
+               
             </div>
 
         </div>

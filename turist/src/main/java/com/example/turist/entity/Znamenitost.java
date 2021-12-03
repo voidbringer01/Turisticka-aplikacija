@@ -17,6 +17,7 @@ public class Znamenitost {
     private int id;
     private String naziv;
     private String opis;
+    private boolean aktivna;
     @ElementCollection
     @CollectionTable(name="slike",joinColumns = @JoinColumn(name="id"))
     @Column(name="slike")

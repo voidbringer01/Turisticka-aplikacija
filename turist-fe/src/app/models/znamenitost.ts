@@ -1,10 +1,14 @@
+import { Ocena } from "./ocena";
+import { Vaznost } from "./vaznost";
+
 export interface Znamenitost{
-    id:string;
-    idOpstine:string;
+    id?:number;
+    idOpstine?:string;
     naziv:string;
     opis:string;
     slike:string[];
-    koordinate:{lat:string,lon:string},
-    vaznost:string;
-    aktivnost?:boolean;
+    koordinate:{id?:number,lat:string,lon:string},
+    vaznost:Vaznost;
+    aktivna?:boolean;
+    ocene?:Ocena[];
 }

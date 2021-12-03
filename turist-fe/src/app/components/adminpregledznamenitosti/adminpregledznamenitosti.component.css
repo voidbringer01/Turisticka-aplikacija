@@ -1,0 +1,12 @@
+.tool-tip{
+    position: absolute;
+    top:40px;
+    left:-13px;
+    background-color: black;
+    color:white;
+    border-radius: 6px;
+    padding:0px 5px;
+    min-width: 120px;
+    max-width: 125px;
+    text-align: center;
+}

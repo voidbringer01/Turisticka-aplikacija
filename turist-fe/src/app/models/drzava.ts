@@ -1,4 +1,7 @@
+import { Opstina } from "./opstina";
+
 export interface Drzava{
-    id:string;
+    id:number;
     nazivDrzave:string;
+    opstine:Opstina[];
 }
