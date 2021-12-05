@@ -33,7 +33,11 @@ public class JwtAuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<?> saveUser(@RequestBody UserRequest user) throws Exception{
-        return ResponseEntity.ok(adminUserService.register(user));
+        UserDetails ud = userDetailsService.loadUserByUsername(user.getUsername());
+        if(ud==null)
+            return ResponseEntity.ok(adminUserService.register(user));
+        else
+            return ResponseEntity.status(403).body("User already exists");
     }
 
     @PostMapping("/login")

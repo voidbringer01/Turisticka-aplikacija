@@ -55,15 +55,16 @@ export class ApiService {
   }
 
   addZnamenitost(znamenitost:Znamenitost,idDrzave:number,idOpstine:number){
-    return this.http.post<any>(`${apiConfig.url}/znamenitosti/${idDrzave}/${idOpstine}`,znamenitost)
+    return this.http.post<Znamenitost>(`${apiConfig.url}/znamenitosti/${idDrzave}/${idOpstine}`,znamenitost)
   }
   editZnamenitost(znamenitost:Znamenitost){
     return this.http.put<any>(`${apiConfig.url}/znamenitosti`,znamenitost)
   }
 
-  upload(file:File){
+  upload(file:File, id:string){
     const formData:FormData = new FormData()
     formData.append('file',file)
+    formData.append('id',id)
     
     const req = new HttpRequest('POST',`${apiConfig.url}/upload`,formData,{
       responseType:'json'

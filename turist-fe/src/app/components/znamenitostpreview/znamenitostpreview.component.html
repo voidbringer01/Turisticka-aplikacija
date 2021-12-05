@@ -7,7 +7,7 @@
         <h6 class="card-subtitle text-muted">{{znamenitost?.vaznost}}</h6>
         </div>
         <!-- <img class="img-thumbnail" [src]="apiConfig.baseUrl+znamenitost?.slike[1]"> -->
-        <app-inline-image-scroller [slike]="znamenitost.slike" [type]="'img-fluid'" [mw]="'max-width: 450px;'"></app-inline-image-scroller>
+        <app-inline-image-scroller [slike]="pomSlike" [type]="'img-fluid'" [mw]="'max-width: 450px;'"></app-inline-image-scroller>
         <div class="card-body">
         <p class="card-text">{{znamenitost?.opis}}.</p>
         </div>

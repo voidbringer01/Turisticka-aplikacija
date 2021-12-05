@@ -14,6 +14,7 @@ import { apiConfig } from 'src/app/config';
 export class ZnamenitostComponent implements OnInit {
   @Input() znamenitost:Znamenitost;
   ocene:Ocena[];
+  pomSlike:string[] = [];
   prosecnaOcena:number;
   mojaOcena:Ocena;
   uuid:string;
@@ -22,6 +23,10 @@ export class ZnamenitostComponent implements OnInit {
   constructor( private apiService:ApiService, private storageService:StorageService) { }
 
   ngOnInit(): void {
+    for(let j =0;j<this.znamenitost.slike.length;j++){
+      this.pomSlike.push("uploads/"+this.znamenitost.id+"/"+this.znamenitost.slike[j])
+    }
+    
     this.uuid = this.storageService.getUserID() 
     this.apiService.getOcenaZnamenitostiByCurrentUser(this.znamenitost.id,this.uuid).subscribe((ocena)=>{
       this.mojaOcena = ocena

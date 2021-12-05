@@ -13,26 +13,29 @@
     <div class="modal-body">
         <form >
            
-            <div class="form-group">
+            <div class="form-group has-danger">
                 <label for="naziv">Naziv</label>
-                <input type="text" class="form-control" id="naziv" placeholder="Naziv znamenitosti..." [(ngModel)]="znamenitost.naziv" name="naziv">
+                <input type="text" class="form-control" [ngClass]="errors.naziv!=''?'is-invalid':''" id="naziv" placeholder="Naziv znamenitosti..." [(ngModel)]="znamenitost.naziv" name="naziv">
+                <div class="invalid-feedback">{{errors.naziv}}</div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group has-danger">
                 <label for="opis">Opis</label>
-                <textarea class="form-control" id="opis" rows="3" [(ngModel)]="znamenitost.opis" name="opis"></textarea>
+                <textarea class="form-control" [ngClass]="errors.opis!=''?'is-invalid':''" id="opis" rows="3" [(ngModel)]="znamenitost.opis" name="opis"></textarea>
+                <div class="invalid-feedback">{{errors.opis}}</div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group has-danger">
                 <label for="vaznost">Vaznost</label>
-                <select class="form-control" id="vaznost" [(ngModel)]="znamenitost.vaznost" name="vaz">
+                <select class="form-control" [ngClass]="errors.vaznost!=''?'is-invalid':''" id="vaznost" [(ngModel)]="znamenitost.vaznost" name="vaz">
                     <option>{{vaznost[0]}}</option>
                     <option>{{vaznost[1]}}</option>
                     <option>{{vaznost[2]}}</option>
                 </select>
+                <div class="invalid-feedback">{{errors.vaznost}}</div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group has-danger">
 
                 <div class="form-row">
                     <label for="koordinate">Koordinate</label>
@@ -40,12 +43,14 @@
                 <div class="form-row">
                     <div class="col">
                         <label for="lat">Lat</label>
-                        <input type="number" id="lat" class="form-control" placeholder="Lat" [(ngModel)]="znamenitost.koordinate.lat" name="lat">
+                        <input type="number" id="lat" class="form-control" [ngClass]="errors.koordinate.lat!=''?'is-invalid':''" placeholder="Lat" [(ngModel)]="znamenitost.koordinate.lat" name="lat">
+                        <div class="invalid-feedback">{{errors.koordinate.lat}}</div>
                     </div>
                     
                     <div class="col">
                         <label for="lon">Lon</label>
-                        <input type="number" id="lon" class="form-control" placeholder="Lon" [(ngModel)]="znamenitost.koordinate.lon" name="lon">
+                        <input type="number" id="lon" class="form-control" [ngClass]="errors.koordinate.lon!=''?'is-invalid':''" placeholder="Lon" [(ngModel)]="znamenitost.koordinate.lon" name="lon">
+                        <div class="invalid-feedback">{{errors.koordinate.lon}}</div>
                     </div>
                 </div>
             </div>
@@ -56,9 +61,10 @@
             <ul class="list-group">
                 <li class="list-group-item" *ngFor="let slika of znamenitost.slike">{{slika}} <span class="text-danger float-right" style="cursor:pointer;" (click)="remove(slika)">X</span></li>
             </ul>
-            <div class="form-group">
+            <div class="form-group has-danger">
                 <label for="slike">Izaberi slike:</label>
-                <input type="file" multiple="multiple"  class="form-control-file" id="slike" accept="image/png, image/jpeg" (change)="onFileChange($event)" [(ngModel)]="file" name="file">
+                <input type="file" multiple="multiple"  class="form-control-file" [ngClass]="errors.slike!=''?'is-invalid':''" id="slike" accept="image/png, image/jpeg" (change)="onFileChange($event)" [(ngModel)]="file" name="file">
+                <div class="invalid-feedback">{{errors.slike}}</div>
             </div>
 
         </form>

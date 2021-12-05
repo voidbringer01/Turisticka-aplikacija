@@ -89,10 +89,10 @@ public class ApiController {
         return znamenitostiService.promeniAktivnost(id);
     }
     @PostMapping("/upload")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("id") int idZnamenitosti) {
         String message = "";
         try {
-            fileStorageService.save(file);
+            fileStorageService.save(file,idZnamenitosti);
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));

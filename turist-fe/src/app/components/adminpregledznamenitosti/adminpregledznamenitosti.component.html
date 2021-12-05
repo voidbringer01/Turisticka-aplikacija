@@ -16,7 +16,7 @@
         </thead>
         <tbody>
             <tr *ngFor="let znamenitost of znamenitosti; let i = index;">
-                <th scope="row">{{i+1}}</th>
+                <th scope="row">{{(num-1)*5+i+1}}</th>
                 <td><app-inline-image-scroller [slike]="znamenitost.slike" type="img-thumbnail" mw="max-width: 150px;"></app-inline-image-scroller></td>
                 <td>{{znamenitost.naziv}}</td>
                 <td>{{znamenitost.opis}}</td>

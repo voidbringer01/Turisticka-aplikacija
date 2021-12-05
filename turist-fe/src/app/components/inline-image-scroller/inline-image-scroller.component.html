@@ -1,4 +1,4 @@
-<div class="d-flex flex-column justify-content-center align-items-center">
+<div *ngIf="slike.length>0" class="d-flex flex-column justify-content-center align-items-center">
 <img [src]="apiConfig.baseUrl+slike[current]" [class]="type" [style]="mw">
 {{format(slike[current])}}  
 <span></span>

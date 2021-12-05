@@ -1,8 +1,8 @@
-<button type="button" class="btn" [class]="i==null?'btn-secondary':'text-info btn-link'" data-toggle="modal" data-target="#exampleModal">
+<button type="button" class="btn" [class]="i==null?'btn-secondary':'text-info btn-link'" data-toggle="modal" data-target="#addModal" (click)="resetErrors()">
 {{text}}
 </button>
   
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
     <div class="modal-header">
@@ -13,38 +13,43 @@
     </div>
     <div class="modal-body">
         <form >
-            <div class="form-group">
+            <div class="form-group has-danger">
                 <label for="drzava">Drzava</label>
-                <select class="form-control" id="drzava" [(ngModel)]="drzava" name="drzava" (change)="drzavaChange($event)">
+                <select class="form-control" [ngClass]="errors.drzava!=''?'is-invalid':''" id="drzava" [(ngModel)]="drzava" name="drzava" (change)="drzavaChange($event)">
                     <option *ngFor="let drzava of drzave" [value]="drzava.id">{{drzava.nazivDrzave}}</option>
                 </select>
+                <div class="invalid-feedback">{{errors.drzava}}</div>
             </div>
-            <div class="form-group" *ngIf="drzavaIsSelected">
+            <div class="form-group has-danger" *ngIf="drzavaIsSelected">
                 <label for="opstina">Opstina</label>
-                <select class="form-control" id="opstina" [(ngModel)]="opstina" name="opstina">
+                <select class="form-control" [ngClass]="errors.opstina!=''?'is-invalid':''" id="opstina" [(ngModel)]="opstina" name="opstina">
                     <option *ngFor="let opstina of opstine" [value]="opstina.id">{{opstina.nazivOpstine}}</option>
                 </select>
+                <div class="invalid-feedback">{{errors.opstina}}</div>
             </div>
-            <div class="form-group">
+            <div class="form-group has-danger">
                 <label for="naziv">Naziv</label>
-                <input type="text" class="form-control" id="naziv" placeholder="Naziv znamenitosti..." [(ngModel)]="naziv" name="naziv">
+                <input type="text" class="form-control" [ngClass]="errors.naziv!=''?'is-invalid':''" id="naziv" placeholder="Naziv znamenitosti..." [(ngModel)]="naziv" name="naziv">
+                <div class="invalid-feedback">{{errors.naziv}}</div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group has-danger">
                 <label for="opis">Opis</label>
-                <textarea class="form-control" id="opis" rows="3" [(ngModel)]="opis" name="opis"></textarea>
+                <textarea class="form-control" [ngClass]="errors.opis!=''?'is-invalid':''" id="opis" rows="3" [(ngModel)]="opis" name="opis"></textarea>
+                <div class="invalid-feedback">{{errors.opis}}</div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group has-danger">
                 <label for="vaznost">Vaznost</label>
-                <select class="form-control" id="vaznost" [(ngModel)]="vaz" name="vaz">
+                <select class="form-control" [ngClass]="errors.vaznost!=''?'is-invalid':''" id="vaznost" [(ngModel)]="vaz" name="vaz">
                     <option>{{vaznost[0]}}</option>
                     <option>{{vaznost[1]}}</option>
                     <option>{{vaznost[2]}}</option>
                 </select>
+                <div class="invalid-feedback">{{errors.vaznost}}</div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group has-danger">
 
                 <div class="form-row">
                     <label for="koordinate">Koordinate</label>
@@ -52,12 +57,15 @@
                 <div class="form-row">
                     <div class="col">
                         <label for="lat">Lat</label>
-                        <input type="number" id="lat" class="form-control" placeholder="Lat" [(ngModel)]="lat" name="lat">
+                        <input type="number" id="lat" class="form-control" min="-90" max="90" [ngClass]="errors.koordinate.lat!=''?'is-invalid':''" placeholder="Lat" [(ngModel)]="lat" name="lat" (change)="limitLat($event)">
+                        <div class="invalid-feedback">{{errors.koordinate.lat}}</div>
                     </div>
                     
                     <div class="col">
                         <label for="lon">Lon</label>
-                        <input type="number" id="lon" class="form-control" placeholder="Lon" [(ngModel)]="lon" name="lon">
+                        <input type="number" id="lon" class="form-control" min="-180" max="80" [ngClass]="errors.koordinate.lon!=''?'is-invalid':''" placeholder="Lon" [(ngModel)]="lon" name="lon" (change)="limitLon($event)">
+                        
+                        <div class="invalid-feedback">{{errors.koordinate.lon}}</div>
                     </div>
                 </div>
             </div>
@@ -66,9 +74,10 @@
                 <label class="form-check-label" for="aktivna">Aktivna</label>
             </div>
           
-            <div class="form-group">
+            <div class="form-group has-danger">
                 <label for="slike">Izaberi slike:</label>
-                <input type="file" multiple="multiple"  class="form-control-file" id="slike" accept="image/png, image/jpeg" (change)="onFileChange($event)" [(ngModel)]="file" name="file">
+                <input type="file" multiple="multiple"  class="form-control-file" [ngClass]="errors.slike!=''?'is-invalid':''" id="slike" accept="image/png, image/jpeg" (change)="onFileChange($event)" [(ngModel)]="file" name="file">
+                <div class="invalid-feedback">{{errors.slike}}</div>
             </div>
 
         </form>

@@ -22,6 +22,18 @@ export class AddEditModalComponent implements OnInit {
   @ViewChild('close') close;
   vaznost:Vaznost[] = [Vaznost.ZNAMENITO,Vaznost.VEOMA_ZNAMENITO,Vaznost.NEZAOBILAZNO] 
   
+  errors = {
+    drzava:'',
+    opstina:'',
+    naziv:'',
+    opis:'',
+    vaznost:'',
+    koordinate  :{
+      lat:'',
+      lon:''
+    },
+    slike  :'',
+  }
 
   drzava:string;
   opstina:string;
@@ -51,31 +63,122 @@ export class AddEditModalComponent implements OnInit {
     
   }
 
-  onSave(){
-    
-    let v:Vaznost;
-    for(let va of this.vaznost){
-      if(this.vaz==va)
-        v=  va;
+  validateForm(){
+    let x = true
+
+    if(this.drzava==undefined){
+      this.errors.drzava='Drzava mora biti izabrana.'
+      x = false;
+    }else{
+      this.errors.drzava=''
     }
-    let znam:Znamenitost = {
-      naziv:this.naziv,
-      opis:this.opis,
-      slike:Array.prototype.map.call(this.selectedFiles,(file)=>file.name),
-      koordinate:{lat:this.lat,lon:this.lon},
-      vaznost:v,
-      aktivna:this.aktivna,
-      ocene:[]
-    };
-    this.apiService.addZnamenitost(znam,parseInt(this.drzava),parseInt(this.opstina)).subscribe(resposne=>{
-      console.log(resposne)
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        this.upload(this.selectedFiles[i]);
+
+    if(this.opstina==undefined){
+      this.errors.opstina='Opstina mora biti izabrana'
+      x = false
+    }else{
+      this.errors.opstina = ''
+    }
+
+    if(this.naziv==undefined || this.naziv==''){
+      this.errors.naziv = 'Morate uneti naziv'
+      x = false
+    }else if(this.naziv.length<3 || this.naziv.length>20){
+      this.errors.naziv = 'Naziv mora biti veci od 3 karaktera a manji od 20'
+      x = false
+    }else if(!/^[a-zA-Z\s]+$/.test(this.naziv)){
+      this.errors.naziv = 'Naziv sme sadrzati samo slova i razmake'
+      x = false
+    }else{
+      this.errors.naziv = ''
+    }
+
+    if(this.opis==undefined || this.opis==''){
+      this.errors.opis = 'Morate uneti opis'
+      x = false
+    }else if(this.opis.length<3 || this.opis.length>500){
+      this.errors.opis = 'Opis mora biti veci od 3 karaktera a manji od 500'
+      x = false
+    }else if(!/^[a-zA-Z0-9\s.!?]+$/.test(this.opis)){
+      this.errors.opis = 'opis sme sadrzati samo slova, brojeve, razmake i znakove .?!'
+      x = false
+    }else{
+      this.errors.opis = ''
+    }
+
+    if(this.vaz==undefined){
+      this.errors.vaznost='vaznost mora biti izabrana'
+      x = false
+    }else{
+      this.errors.vaznost = ''
+    }
+
+    if(this.lat==undefined || this.lat==''){
+      this.errors.koordinate.lat = 'Lat mora biti postavljen.'
+      x = false
+    }else{
+      this.errors.koordinate.lat = ''
+    }
+    if(this.lon==undefined || this.lon==''){
+      this.errors.koordinate.lon = 'lon mora biti postavljen.'
+      x = false
+    }else{
+      this.errors.koordinate.lon = ''
+    }
+
+    if(this.selectedFiles==undefined){
+      this.errors.slike = 'Izaberite sliku.'
+      x = false
+    }else{
+      this.errors.slike=''
+    }
+
+    
+
+
+    return x;
+  }
+
+  limitLat(evt){
+    if(evt.target.value>90)
+      evt.target.value = 90
+    if(evt.target.value<-90)
+      evt.target.value = -90
+  }
+
+  limitLon(evt){
+    if(evt.target.value>80)
+      evt.target.value = 80
+    if(evt.target.value<-180)
+      evt.target.value = -180
+  }
+
+  onSave(){
+    if(this.validateForm()){
+      let v:Vaznost;
+      for(let va of this.vaznost){
+        if(this.vaz==va)
+          v=  va;
       }
-      this.save.emit()
-      let el: HTMLElement = this.close.nativeElement;
-      el.click();
-    })
+      let znam:Znamenitost = {
+        naziv:this.naziv,
+        opis:this.opis,
+        slike:Array.prototype.map.call(this.selectedFiles,(file)=>file.name),
+        koordinate:{lat:this.lat,lon:this.lon},
+        vaznost:v,
+        aktivna:this.aktivna,
+        ocene:[]
+      };
+      this.apiService.addZnamenitost(znam,parseInt(this.drzava),parseInt(this.opstina)).subscribe(resposne=>{
+        
+        for (let i = 0; i < this.selectedFiles.length; i++) {
+          this.upload(this.selectedFiles[i],resposne.id.toString());
+        }
+        this.save.emit()
+        let el: HTMLElement = this.close.nativeElement;
+        el.click();
+      })
+    }
    
   }
 
@@ -90,11 +193,21 @@ export class AddEditModalComponent implements OnInit {
     // }
   }
 
-  upload(file){
-    this.apiService.upload(file).subscribe(
+  upload(file,id){
+    this.apiService.upload(file,id).subscribe(
       event=>{
         console.log(event)
       }
     )
+  }
+
+  resetErrors(){
+    for(let prop in this.errors){
+      if(prop == 'koordinate'){
+        this.errors[prop].lat = ''
+        this.errors[prop].lon = ''
+      }else
+        this.errors[prop] = ''
+    }
   }
 }

@@ -18,6 +18,12 @@ export class AdminpregledznamenitostiComponent implements OnInit {
   ngOnChanges(){
     this.apiService.getAllZnamenitosti(this.num).subscribe(znamenitosti=>{
       this.znamenitosti = znamenitosti
+      for(let i = 0;i<this.znamenitosti.length;i++){
+        for(let j =0;j<this.znamenitosti[i].slike.length;j++){
+          this.znamenitosti[i].slike[j] = "uploads/"+this.znamenitosti[i].id+"/"+this.znamenitosti[i].slike[j]
+        }
+      }
+
       this.showToolTip = Array(this.znamenitosti.length).fill("none");
     })
   }
@@ -25,6 +31,17 @@ export class AdminpregledznamenitostiComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getAllZnamenitosti(this.num).subscribe(znamenitosti=>{
       this.znamenitosti = znamenitosti
+      console.log('ON INIT')
+      console.log(this.znamenitosti)
+
+      for(let i = 0;i<this.znamenitosti.length;i++){
+        for(let j =0;j<this.znamenitosti[i].slike.length;j++){
+          this.znamenitosti[i].slike[j] = "uploads/"+this.znamenitosti[i].id+"/"+this.znamenitosti[i].slike[j]
+        }
+      }
+
+     
+      console.log(this.znamenitosti)
       this.showToolTip = Array(this.znamenitosti.length).fill("none");
     })
   }
@@ -57,7 +74,23 @@ export class AdminpregledznamenitostiComponent implements OnInit {
     })
   }
   
-  edituj(i){
+  edituj(){
+    this.apiService.getAllZnamenitosti(this.num).subscribe(znamenitosti=>{
+      this.znamenitosti = znamenitosti
+      for(let i = 0;i<this.znamenitosti.length;i++){
+        for(let j =0;j<this.znamenitosti[i].slike.length;j++){
+          this.znamenitosti[i].slike[j] = "uploads/"+this.znamenitosti[i].id+"/"+this.znamenitosti[i].slike[j]
+        }
+      }
+      // for(let i = 0;i<this.znamenitosti.length;i++){
+      //   for(let j =0;j<this.znamenitosti[i].slike.length;j++){
+      //     let arr = this.znamenitosti[i].slike[j].split('/')
+      //     this.znamenitosti[i].slike[j] = arr[0]+'/'+this.znamenitosti[i].id+arr[1]
+      //   }
+      // }
+
+      this.showToolTip = Array(this.znamenitosti.length).fill("none");
+    })
     this.onEdit.emit()
   }
 }

@@ -18,6 +18,7 @@ export class ZnamenitostpreviewComponent implements OnInit {
   prosecnaOcena:number;
   mojaOcena:Ocena;
   uuid:string;
+  pomSlike:string[] = [];
   apiConfig = apiConfig
 
   constructor(private route: ActivatedRoute, private apiService:ApiService,  private storageService:StorageService, private router:Router) { }
@@ -31,6 +32,11 @@ export class ZnamenitostpreviewComponent implements OnInit {
           this.router.navigate(['/'])
         else{
           this.znamenitost = znamenitost
+          let pomArr = []
+          for(let j =0;j<this.znamenitost.slike.length;j++){
+            pomArr.push("uploads/"+this.znamenitost.id+"/"+this.znamenitost.slike[j])
+          }
+          this.pomSlike = pomArr
           this.uuid = this.storageService.getUserID() 
           this.apiService.getOcenaZnamenitostiByCurrentUser(this.znamenitost.id,this.uuid).subscribe((ocena)=>{
             this.mojaOcena = ocena
@@ -51,11 +57,15 @@ export class ZnamenitostpreviewComponent implements OnInit {
   }
 
   handleVoting(num){
-    if(isNaN(this.mojaOcena.ocena)){
-      this.mojaOcena.ocena = num
+    console.log(this.mojaOcena)
+    if(this.mojaOcena == null || isNaN(this.mojaOcena.ocena)){
+      this.mojaOcena = {
+        potpis:this.uuid,
+        ocena:num+1
+      }
       let obj:Ocena = {
         potpis:this.uuid,
-        ocena:(this.mojaOcena.ocena+1)
+        ocena:(this.mojaOcena.ocena)
       }
       this.apiService.addOcena(obj,this.znamenitost.id).subscribe(data =>{
         this.handleAverage()

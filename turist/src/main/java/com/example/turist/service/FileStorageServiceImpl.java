@@ -34,10 +34,24 @@ public class FileStorageServiceImpl implements FileStorageService{
         }
     }
 
+    public void createZnamFolder(int id){
+        String path = "/uploads/"+String.valueOf(id);
+        Path dir = Paths.get(path);
+        try{
+            if(!Files.exists(dir)){
+                Files.createDirectory(dir);
+            }
+        }catch(IOException io){
+            System.out.println(io);
+        }
+    }
+
     @Override
-    public void save(MultipartFile file) {
+    public void save(MultipartFile file,int id) {
+        String path = "/uploads/"+String.valueOf(id);
+        Path dir = Paths.get(path);
         try {
-            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+            Files.copy(file.getInputStream(), dir.resolve(file.getOriginalFilename()));
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
         }

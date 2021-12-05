@@ -26,6 +26,9 @@ public class ZnamenitostiService {
     @Autowired
     private OpstinaRepository opstinaRepository;
 
+    @Autowired
+    private FileStorageServiceImpl fileStorageService;
+
     public List<Znamenitost> findZnamenitostiByDrzavaAndOpstina(int idDrzave, int idOpstine){
         Drzava d = this.drzavaRepository.findById(idDrzave).orElse(null);
         if(d!=null) {
@@ -47,7 +50,11 @@ public class ZnamenitostiService {
     }
 
     public int getProsekOcena(int id) {
+        Znamenitost z = this.znamenitostRepository.findById(id).orElse(null);
+        if(z.getOcene().size()>0)
         return znamenitostRepository.findAverageOcena(id);
+        else
+            return 0;
     }
 
     public Ocena getOcena(int idZnamenitosti, String idKorisnika) {
@@ -113,16 +120,19 @@ public class ZnamenitostiService {
             if(d!=null) {
                 Opstina o = d.getOpstine().stream().filter(x -> x.getId() == idOpstine).findFirst().orElse(null);
                 if (o != null) {
-                    List<String> ls = znamenitost.getSlike();
-                    for(int i = 0;i<ls.size();i++){
-                        ls.set(i, "uploads/"+ls.get(i));
-                    }
-                    znamenitost.setSlike(ls);
+//                    List<String> ls = znamenitost.getSlike();
+//                    for (int i = 0; i < ls.size(); i++) {
+//                        ls.set(i, "uploads/" + ls.get(i));
+//                    }
+//                    znamenitost.setSlike(ls);
                     o.getZnamenitosti().add(znamenitost);
-                    this.opstinaRepository.save(o);
-                    String message = "Znamenitost uspesno kreirana.";
+                    Opstina savedOpstina = this.opstinaRepository.save(o);
+                    this.fileStorageService.createZnamFolder(savedOpstina.getZnamenitosti().get(savedOpstina.getZnamenitosti().size()-1).getId());
+                    return savedOpstina.getZnamenitosti().get(savedOpstina.getZnamenitosti().size()-1);
+//                        String message = "Znamenitost uspesno kreirana.";
 //                    return ResponseEntity.status(201).body(message);
-                    return znamenitost;
+
+//                        return znamenitost;
                 }
                 else {
                     String message = "Greska u pronalazenju opstine.";
@@ -146,6 +156,7 @@ public class ZnamenitostiService {
             String message = "Znamenitost nije pronadjena";
             return ResponseEntity.status(400).body(message);
         }else{
+            znamenitost.setSlike(znamenitost.getSlike() );
             z.setSlike(znamenitost.getSlike());
             z.setOcene(znamenitost.getOcene());
             z.setVaznost(znamenitost.getVaznost());

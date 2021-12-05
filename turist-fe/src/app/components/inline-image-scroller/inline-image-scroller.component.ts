@@ -11,6 +11,7 @@ export class InlineImageScrollerComponent implements OnInit {
   @Input() slike:string[];
   @Input() type:string;
   @Input() mw:string;
+  slikeo:string[];
   current:number = 0;
   faArrowRight = faArrowRight
   faArrowLeft = faArrowLeft
@@ -19,16 +20,29 @@ export class InlineImageScrollerComponent implements OnInit {
   apiConfig = apiConfig
   constructor() { }
 
-  ngOnInit(): void {
-    if(this.slike.length==1)
+  ngOnChanges(){
+    
+    // if(this.slike)
+    //   this.slikeo = this.slike
+
+    if(this.slike)
+      this.slikeo = this.slike
+    if(this.slikeo.length==1)
       this.rightDisabled = true
   }
 
+  ngOnInit(): void {
+  }
+
   format(url){
-    let x = url.split('/')
-    let y = x[x.length-1]
-    let z = y.split('.')
-    return z[0]
+    if(url){
+      let x = url.split('/')
+      let y = x[x.length-1]
+      let z = y.split('.')
+      return z[0]
+    }else{
+      return ''
+    }
   }
 
   goRight(){
